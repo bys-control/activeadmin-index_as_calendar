@@ -13,7 +13,7 @@ module ActiveAdmin
             {
               id: item.id,
               title: item.to_s,
-              start: item.date_hour,
+              start: item.created_at.blank? ? Date.today.to_s : item.created_at,
               url: "#{auto_url_for(item)}"
             }
           end
