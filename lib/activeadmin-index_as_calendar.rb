@@ -1,3 +1,6 @@
+require "fullcalendar-rails"
+require "momentjs-rails"
+
 require "index_as_calendar/version"
 require "index_as_calendar/engine"
 require "index_as_calendar/dsl"

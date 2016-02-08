@@ -1,6 +1,9 @@
+<div id="fullCalendar"></div>
+
 <script>
 	$(function(){
-    $('div#calendar').fullCalendar({
+    // Default options for fullCalendar goes here
+    default_options = {
       lang: 'es',
       header: {
         left: 'title',
@@ -16,6 +19,8 @@
         });
       },
       events: <%= events.to_json.html_safe %>
-    });
+    };
+
+    $('div#fullCalendar').fullCalendar($.extend(default_options, <%=options%>));
   });
 </script>
