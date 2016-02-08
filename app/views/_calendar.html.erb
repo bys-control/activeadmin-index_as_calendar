@@ -1,0 +1,21 @@
+<script>
+	$(function(){
+    $('div#calendar').fullCalendar({
+      lang: 'es',
+      header: {
+        left: 'title',
+        center: '',
+        right: 'prev,today,next month,basicWeek,basicDay'
+      },
+      eventRender: function( event, element, view ){
+        element.qtip({
+          content: event.tooltip,
+          style: {
+            classes: 'qtip-shadow'
+          }
+        });
+      },
+      events: <%= events.to_json.html_safe %>
+    });
+  });
+</script>

@@ -1,0 +1,7 @@
+<% if @model.errors.any? %>
+    var html = "<%= escape_javascript(render partial:'/error_messages', object: @model, as:'object') %>";
+    $('#quick-add-errors').html(html);
+<% else %>
+    setSelectResult(<%= @selector %>, <%= @model.id%>, "<%= @model.name %>")
+    $('<%="div##{@id}"%>').closest("div.fancybox-skin").find("a.fancybox-close").click();
+<% end %>
