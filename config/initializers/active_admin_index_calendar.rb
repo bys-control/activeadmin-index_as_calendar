@@ -5,7 +5,7 @@ module ActiveAdmin
       def build(page_presenter, collection)
         add_class "calendar"
         context = {:page_presenter => page_presenter, :collection => collection}
-        events = instance_exec(context, &page_presenter.block)
+        events = instance_exec(context, &page_presenter.block) unless page_presenter.block.blank?
 
         # Builds default events array for collection if page_presenter.block returns no data
         if events.blank?
