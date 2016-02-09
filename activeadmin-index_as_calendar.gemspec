@@ -7,9 +7,9 @@ require "index_as_calendar/version"
 Gem::Specification.new do |s|
   s.name        = "activeadmin-index_as_calendar"
   s.version     = ActiveAdminIndexAsCalendar::VERSION
-  s.authors     = ["B&S Sistemas de Control"]
+  s.authors     = ["ByS Sistemas de Control"]
   s.email       = ["info@bys-control.com.ar"]
-  s.homepage    = "https://github.com/bys-control/activeadmin_index_as_calendar"
+  s.homepage    = "https://github.com/bys-control/activeadmin-index_as_calendar"
   s.summary     = "Adds support to show resources indexes as calendar in ActiveAdmin"
   s.description = "Adds support to show resources indexes as calendar in ActiveAdmin using fullCalendar JQuery plugin"
   s.license     = "MIT"
