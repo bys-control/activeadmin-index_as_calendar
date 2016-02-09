@@ -6,12 +6,13 @@ module ActiveAdminIndexAsCalendar
     #
     def index_as_calendar( options={}, &block )
       default_options = {
-        :ajax => nil,
-        :model => nil,   # Needed only for AJAX
-        :includes => nil, # Eager loading of related models
-        :start_field => :created_at, # Default
-        :end_field => nil,
-        :block => block
+        :ajax => true,   # Use AJAX to fetch events. Set to false to send data during render.
+        :model => nil,   # Model to be used to fetch events. Defaults to ActiveAdmin resource model.
+        :includes => [], # Eager loading of related models
+        :start_date => :created_at, # Field to be used as start date for events
+        :end_date => nil, # Field to be used as end date for events
+        :block => block, # Block with the model<->event field mappings
+        :fullCalendarOptions => nil # fullCalendar options to be sent upon initialization
       }
       options = default_options.deep_merge(options)
 
@@ -25,7 +26,7 @@ module ActiveAdminIndexAsCalendar
               {
                 :id => item.id,
                 :title => item.to_s,
-                :start => (options[:start_field].blank? or item.send(options[:start_field]).blank?) ? Date.today.to_s : item.send(options[:start_field])
+                :start => (options[:start_date].blank? or item.send(options[:start_date]).blank?) ? Date.today.to_s : item.send(options[:start_date])
               }
             end
           end
@@ -37,6 +38,7 @@ module ActiveAdminIndexAsCalendar
 
         # Setup fullCalendar to use AJAX calls to retrieve event data
         index as: :calendar do |context|
+          context[:fullCalendarOptions] = options[:fullCalendarOptions]
           events = {
             url: "#{collection_path()}/index_as_events.json",
             type: 'GET',
@@ -49,7 +51,7 @@ module ActiveAdminIndexAsCalendar
           items = options[:model] || end_of_association_chain
           items = items.send(params[:scope]) if params[:scope].present?
           items = items.includes(options[:includes]) unless options[:includes].blank?
-          items = items.where(options[:start_field] => params[:start].to_date...params[:end].to_date).search(params[:q]).result
+          items = items.where(options[:start_date] => params[:start].to_date...params[:end].to_date).search(params[:q]).result
 
           events = event_mapping(items, options)
 
@@ -61,6 +63,7 @@ module ActiveAdminIndexAsCalendar
       # Return events to be used during partial render
       else
         index as: :calendar do |context|
+          context[:fullCalendarOptions] = options[:fullCalendarOptions]
           events = self.controller.event_mapping(context[:collection], options)
         end
       end
