@@ -1,4 +1,4 @@
-module ActiveAdminIndexAsCalendar
+module IndexAsCalendar
   module ApplicationHelper
   end
 end

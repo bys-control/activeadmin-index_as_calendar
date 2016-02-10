@@ -6,7 +6,7 @@ require "index_as_calendar/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "activeadmin-index_as_calendar"
-  s.version     = ActiveAdminIndexAsCalendar::VERSION
+  s.version     = IndexAsCalendar::VERSION
   s.authors     = ["ByS Sistemas de Control"]
   s.email       = ["info@bys-control.com.ar"]
   s.homepage    = "https://github.com/bys-control/activeadmin-index_as_calendar"

@@ -1,4 +1,4 @@
-module ActiveAdminIndexAsCalendar
+module IndexAsCalendar
   module DSL
 
     #

@@ -1,3 +1,3 @@
-module ActiveAdminIndexAsCalendar
-  VERSION = "0.0.6"
+module IndexAsCalendar
+  VERSION = "0.0.7"
 end
