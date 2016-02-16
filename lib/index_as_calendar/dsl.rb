@@ -12,7 +12,8 @@ module IndexAsCalendar
         :start_date => :created_at, # Field to be used as start date for events
         :end_date => nil, # Field to be used as end date for events
         :block => block, # Block with the model<->event field mappings
-        :fullCalendarOptions => nil # fullCalendar options to be sent upon initialization
+        :fullCalendarOptions => nil, # fullCalendar options to be sent upon initialization
+        :default => false # Set this index view as default
       }
       options = default_options.deep_merge(options)
 
@@ -26,7 +27,8 @@ module IndexAsCalendar
               {
                 :id => item.id,
                 :title => item.to_s,
-                :start => (options[:start_date].blank? or item.send(options[:start_date]).blank?) ? Date.today.to_s : item.send(options[:start_date])
+                :start => (options[:start_date].blank? or item.send(options[:start_date]).blank?) ? Date.today.to_s : item.send(options[:start_date]),
+                :end => (options[:end_date].blank? or item.send(options[:end_date]).blank?) ? nil : item.send(options[:end_date])
               }
             end
           end
@@ -37,7 +39,7 @@ module IndexAsCalendar
       if options[:ajax]
 
         # Setup fullCalendar to use AJAX calls to retrieve event data
-        index as: :calendar do |context|
+        index as: :calendar, default: options[:default] do |context|
           context[:fullCalendarOptions] = options[:fullCalendarOptions]
           events = {
             url: "#{collection_path()}/index_as_events.json",
@@ -62,7 +64,7 @@ module IndexAsCalendar
 
       # Return events to be used during partial render
       else
-        index as: :calendar do |context|
+        index as: :calendar, default: options[:default] do |context|
           context[:fullCalendarOptions] = options[:fullCalendarOptions]
           events = self.controller.event_mapping(context[:collection], options)
         end
