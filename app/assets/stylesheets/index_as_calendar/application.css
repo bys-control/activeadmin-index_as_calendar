@@ -13,5 +13,5 @@
  *= require_tree .
  *= require_self
  *= require "fullcalendar"
- *= require "jquery.qtip.min"
+ *= require "./jquery.qtip.min"
  */
