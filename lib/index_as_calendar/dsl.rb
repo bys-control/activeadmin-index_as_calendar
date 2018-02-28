@@ -13,7 +13,8 @@ module IndexAsCalendar
         :end_date => nil, # Field to be used as end date for events
         :block => block, # Block with the model<->event field mappings
         :fullCalendarOptions => nil, # fullCalendar options to be sent upon initialization
-        :default => false # Set this index view as default
+        :default => false, # Set this index view as default
+        :locale => 'en'
       }
       options = default_options.deep_merge(options)
 
