@@ -82,6 +82,7 @@ default_options = {
   :includes => [], # Eager loading of related models
   :start_date => :created_at, # Field to be used as start date for events
   :end_date => nil, # Field to be used as end date for events
-  :block => block # Block with the model<->event field mappings
+  :block => block, # Block with the model<->event field mappings
+  :locale => 'en'
 }
 ```
