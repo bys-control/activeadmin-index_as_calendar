@@ -53,8 +53,8 @@ module IndexAsCalendar
         collection_action :index_as_events, :method => :get do
           items = options[:model] || end_of_association_chain
           items = items.send(params[:scope]) if params[:scope].present?
-          items = items.includes(options[:includes]) unless options[:includes].blank?
-          items = items.order(options[:order]) unless options[:order].blank?
+          items = items.includes(options[:includes]) if options[:includes].present?
+          items = items.order(options[:order]) if options[:order].present?
           items = items.where(options[:start_date] => params[:start].to_date...params[:end].to_date).ransack(params[:q]).result
 
           events = event_mapping(items, options)
