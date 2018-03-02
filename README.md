@@ -80,6 +80,7 @@ default_options = {
   :ajax => true,   # Use AJAX to fetch events. Set to false to send data during render.
   :model => nil,   # Model to be used to fetch events. Defaults to ActiveAdmin resource model.
   :includes => [], # Eager loading of related models
+  :order => [],    # Order the objects
   :start_date => :created_at, # Field to be used as start date for events
   :end_date => nil, # Field to be used as end date for events
   :block => block # Block with the model<->event field mappings
