@@ -19,7 +19,7 @@ In app/assets/javascripts/active_admin.js add
 
 In app/assets/stylesheets/active_admin.css.scss add
 ```CSS
-@import "index_as_calendar/application"
+@import "index_as_calendar";
 ```
 
 Finally, run `bundle install`
